@@ -4,32 +4,26 @@
   import Copy from "lucide-svelte/icons/copy";
   import CreditCard from "lucide-svelte/icons/credit-card";
   import File from "lucide-svelte/icons/file";
-  import House from "lucide-svelte/icons/house";
-  import ChartLine from "lucide-svelte/icons/chart-line";
-  import ListFilter from "lucide-svelte/icons/list-filter";
-  import EllipsisVertical from "lucide-svelte/icons/ellipsis-vertical";
-  import Package from "lucide-svelte/icons/package";
-  import Package2 from "lucide-svelte/icons/package-2";
-  import PanelLeft from "lucide-svelte/icons/panel-left";
+
   import Search from "lucide-svelte/icons/search";
-  import Settings from "lucide-svelte/icons/settings";
-  import ShoppingCart from "lucide-svelte/icons/shopping-cart";
+
   import Truck from "lucide-svelte/icons/truck";
-  import UsersRound from "lucide-svelte/icons/users-round";
 
   import { Badge } from "$lib/components/ui/badge/index.js";
-  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
-  import * as Pagination from "$lib/components/ui/pagination/index.js";
+
   import { Progress } from "$lib/components/ui/progress/index.js";
   import { Separator } from "$lib/components/ui/separator/index.js";
-  import * as Sheet from "$lib/components/ui/sheet/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
+
   import * as Table from "$lib/components/ui/table/index.js";
   import * as Tabs from "$lib/components/ui/tabs/index.js";
-  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+
+  import { Slider } from "$lib/components/ui/slider/index.js";
+
+  let value = $state(33);
 </script>
 
 <div class=" flex min-h-screen w-full flex-col">
@@ -37,113 +31,22 @@
     <header
       class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
     >
-      <!-- <Sheet.Root>
-        <Sheet.Trigger asChild let:builder>
-          <Button
-            builders={[builder]}
-            size="icon"
-            variant="outline"
-            class="sm:hidden"
-          >
-            <PanelLeft class="h-5 w-5" />
-            <span class="sr-only">Toggle Menu</span>
-          </Button>
-        </Sheet.Trigger>
-        <Sheet.Content side="left" class="sm:max-w-xs">
-          <nav class="grid gap-6 text-lg font-medium">
-            <a
-              href="##"
-              class="bg-primary text-primary-foreground group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
-            >
-              <Package2 class="h-5 w-5 transition-all group-hover:scale-110" />
-              <span class="sr-only">Acme Inc</span>
-            </a>
-            <a
-              href="##"
-              class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
-            >
-              <House class="h-5 w-5" />
-              Dashboard
-            </a>
-            <a href="##" class="text-foreground flex items-center gap-4 px-2.5">
-              <ShoppingCart class="h-5 w-5" />
-              Orders
-            </a>
-            <a
-              href="##"
-              class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
-            >
-              <Package class="h-5 w-5" />
-              Products
-            </a>
-            <a
-              href="##"
-              class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
-            >
-              <UsersRound class="h-5 w-5" />
-              Customers
-            </a>
-            <a
-              href="##"
-              class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
-            >
-              <ChartLine class="h-5 w-5" />
-              Settings
-            </a>
-          </nav>
-        </Sheet.Content>
-      </Sheet.Root> -->
-      <Breadcrumb.Root class="hidden md:flex">
-        <Breadcrumb.List>
-          <Breadcrumb.Item>
-            <Breadcrumb.Link href="##">Dashboard</Breadcrumb.Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Separator />
-          <Breadcrumb.Item>
-            <Breadcrumb.Link href="##">Orders</Breadcrumb.Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Separator />
-          <Breadcrumb.Item>
-            <Breadcrumb.Page>Recent Orders</Breadcrumb.Page>
-          </Breadcrumb.Item>
-        </Breadcrumb.List>
-      </Breadcrumb.Root>
-      <div class="relative ml-auto flex-1 md:grow-0">
-        <Search
-          class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4"
-        />
-        <Input
-          type="search"
-          placeholder="Search..."
-          class="bg-background w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
-        />
+      <div>
+        <div>
+          <Label for="airplane-mode">Airplane Mode</Label>
+        </div>
+        <div class="relative flex flex-row ml-auto flex-1 md:grow-0">
+          <Search
+            class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4"
+          />
+          <Input
+            id="airplane-mode"
+            type="search"
+            placeholder="Search..."
+            class="bg-background w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
+          />
+        </div>
       </div>
-      <!-- <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild let:builder>
-          <Button
-            variant="outline"
-            size="icon"
-            class="overflow-hidden rounded-full"
-            builders={[builder]}
-          >
-            <img
-              src="/images/placeholder-user.jpg"
-              width={36}
-              height={36}
-              alt="Avatar"
-              class="overflow-hidden rounded-full"
-            />
-          </Button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content align="end">
-          <DropdownMenu.Label>My Account</DropdownMenu.Label>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>Settings</DropdownMenu.Item>
-          <DropdownMenu.Item>Support</DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>Logout</DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Root> -->
     </header>
     <main
       class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3"
@@ -193,6 +96,7 @@
             </Card.Footer>
           </Card.Root>
         </div>
+        <div><Slider type="single" bind:value max={100} step={1} /></div>
         <Tabs.Root value="week">
           <div class="flex items-center">
             <Tabs.List>
@@ -201,30 +105,6 @@
               <Tabs.Trigger value="year">Year</Tabs.Trigger>
             </Tabs.List>
             <div class="ml-auto flex items-center gap-2">
-              <!-- <DropdownMenu.Root>
-                <DropdownMenu.Trigger asChild let:builder>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    class="h-7 gap-1 text-sm"
-                    builders={[builder]}
-                  >
-                    <ListFilter class="h-3.5 w-3.5" />
-                    <span class="sr-only sm:not-sr-only">Filter</span>
-                  </Button>
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content align="end">
-                  <DropdownMenu.Label>Filter by</DropdownMenu.Label>
-                  <DropdownMenu.Separator />
-                  <DropdownMenu.CheckboxItem checked>
-                    Fulfilled
-                  </DropdownMenu.CheckboxItem>
-                  <DropdownMenu.CheckboxItem>Declined</DropdownMenu.CheckboxItem
-                  >
-                  <DropdownMenu.CheckboxItem>Refunded</DropdownMenu.CheckboxItem
-                  >
-                </DropdownMenu.Content>
-              </DropdownMenu.Root> -->
               <Button size="sm" variant="outline" class="h-7 gap-1 text-sm">
                 <File class="h-3.5 w-3.5" />
                 <span class="sr-only sm:not-sr-only">Export</span>
@@ -452,27 +332,9 @@
                   Track Order
                 </span>
               </Button>
-              <!-- <DropdownMenu.Root>
-                <DropdownMenu.Trigger asChild let:builder>
-                  <Button
-                    builders={[builder]}
-                    size="icon"
-                    variant="outline"
-                    class="h-8 w-8"
-                  >
-                    <EllipsisVertical class="h-3.5 w-3.5" />
-                    <span class="sr-only">More</span>
-                  </Button>
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content align="end">
-                  <DropdownMenu.Item>Edit</DropdownMenu.Item>
-                  <DropdownMenu.Item>Export</DropdownMenu.Item>
-                  <DropdownMenu.Separator />
-                  <DropdownMenu.Item>Trash</DropdownMenu.Item>
-                </DropdownMenu.Content>
-              </DropdownMenu.Root> -->
             </div>
           </Card.Header>
+
           <Card.Content class="p-6 text-sm">
             <div class="grid gap-3">
               <div class="font-semibold">Order Details</div>
@@ -550,6 +412,7 @@
               </dl>
             </div>
             <Separator class="my-4" />
+
             <div class="grid gap-3">
               <div class="font-semibold">Payment Information</div>
               <dl class="grid gap-3">

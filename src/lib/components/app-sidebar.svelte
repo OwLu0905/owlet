@@ -34,7 +34,13 @@
         name: "Home",
         logo: Command,
         plan: "Free",
-        link: "/",
+        link: "/echo/1",
+      },
+      {
+        name: "Listen",
+        logo: Command,
+        plan: "Free",
+        link: "/listen",
       },
     ],
     navMain: [
