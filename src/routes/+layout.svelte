@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Toaster } from "$lib/components/ui/sonner/index.js";
 	import { page } from "$app/state";
 	import "../app.css";
 
@@ -8,12 +9,20 @@
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb";
 
 	let { children } = $props();
-	let url = page.url;
+	let url = $derived(page.url);
 
-	let pathname = url.pathname;
-	let isHomePage = pathname === "/";
+	let mainRoute = $derived.by(() => {
+		const name =
+			url.pathname.split("/").filter((segment) => segment !== "")[0] ?? "Owlet";
+		const title = name.charAt(0).toUpperCase() + name.slice(1);
+		return title;
+	});
+
+	let pathname = $derived(url.pathname);
+	let isHomePage = $derived(pathname === "/");
 </script>
 
+<Toaster />
 <Sidebar.Provider>
 	<AppSidebar />
 	<Sidebar.Inset>
@@ -38,12 +47,16 @@
 				</Breadcrumb.Root>
 			</div>
 		</header>
-		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+		<h1 class="p-4 text-3xl text-primary font-bold py-2">{mainRoute}</h1>
+		<div class="flex flex-1 flex-col gap-4 p-4">
 			{#if isHomePage}
 				<div class="grid auto-rows-min gap-4 md:grid-cols-3">
 					<div class="aspect-video rounded-xl bg-muted/50"></div>
 					<div class="aspect-video rounded-xl bg-muted/50"></div>
 					<div class="aspect-video rounded-xl bg-muted/50"></div>
+					<div class="w-full col-span-4">
+						{@render children()}
+					</div>
 				</div>
 				<div
 					class="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min"
